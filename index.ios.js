@@ -55,22 +55,26 @@ var ReactNativeNews = React.createClass({
     },
     renderLoadingView : function() {
         return (
-            <View style={styles.container}>
-                <Text>
-                    Loading News...
-                </Text>
+            <View style={styles.pageContainer}>
+                <View style={styles.container}>
+                    <Text>
+                        Loading News...
+                    </Text>
+                </View>
             </View>
         );
     },
     renderNews : function(news) {
         return (
-            <View style={styles.container}>
-                <Image 
-                source={{uri : news.pic}}
-                style={styles.newsPic} />
-                <View style={styles.rightContainer}>
-                    <Text style={styles.newsTitle}>{news.title}</Text>
-                    <Text style={styles.newsSummary}>{news.summary}</Text>
+            <View style={styles.pageContainer}>
+                <View style={[styles.container, styles.newsItemContainer]}>
+                    <Image 
+                    source={{uri : news.pic}}
+                    style={styles.newsPic} />
+                    <View style={styles.rightContainer}>
+                        <Text style={styles.newsTitle}>{news.title}</Text>
+                        <Text style={styles.newsSummary}>{news.summary}</Text>
+                    </View>
                 </View>
             </View>
         );
@@ -79,6 +83,10 @@ var ReactNativeNews = React.createClass({
 });
 
 var styles = StyleSheet.create({
+    pageContainer: {
+        marginLeft : 10,
+        marginRight : 10,
+    },
     container: {
         flex: 1,
         flexDirection : 'row',
@@ -89,26 +97,26 @@ var styles = StyleSheet.create({
     rightContainer: {
         flex: 1,
     },
+    newsItemContainer: {
+        borderBottomWidth: 1,
+        borderBottomColor: '#ebebeb',
+    },
     listView: {
         paddingTop: 20,
         backgroundColor: '#F5FCFF',
-    },
-    newsItem: {
-        
     },
     newsPic : {
         width : 90,
         height : 60,
         margin: 10,
+        marginLeft: 0,
     },
     newsTitle : {
         color : '#4f4f4f',
         fontSize : 16,
-        marginBottom : 10,
         textAlign : 'left',
     },
     newsSummary : {
-        marginRight : 10,
         color : '#bababa',
         fontSize : 14,
         textAlign : 'left',
