@@ -12,8 +12,9 @@ a news app code by react native
 
 ### demo
 
-![demo 1](demo/images/1.png)
 
-![demo 2](demo/images/2.png)
+<img src="demo/images/1.png" width="300" height="500" />
+
+<img src="demo/images/2.png" width="300" height="500" />
 
 
