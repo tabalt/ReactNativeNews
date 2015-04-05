@@ -13,8 +13,8 @@ a news app code by react native
 ### demo
 
 
-<img src="demo/images/1.png" width="300" height="500" />
+<img src="demo/images/1.png" width="300" height="500" style="float:left; margin:10px;" />
 
-<img src="demo/images/2.png" width="300" height="500" />
+<img src="demo/images/2.png" width="300" height="500" style="float:left; margin:10px;" />
 
 
