@@ -19,7 +19,7 @@ var {
     Navigator
 } = React;
 
-var NEWS_LIST_API_URL = 'http://88.studyteam.sinaapp.com/rnn/news_list.json?';
+var NEWS_LIST_API_URL = 'http://88.studyteam.sinaapp.com/rnn/news_list.json';
 
 var NewsList = React.createClass({
 
@@ -105,7 +105,7 @@ var styles = StyleSheet.create({
         borderBottomColor: '#ebebeb',
     },
     listView: {
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#ffffff',
     },
     newsPic : {
         width : 90,
