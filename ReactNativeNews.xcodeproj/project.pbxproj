@@ -20,9 +20,11 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
-		312862931AC7E3240022DD93 /* NewsList.js in Resources */ = {isa = PBXBuildFile; fileRef = 312862911AC7E3240022DD93 /* NewsList.js */; };
-		312862941AC7E3240022DD93 /* TabBar.js in Resources */ = {isa = PBXBuildFile; fileRef = 312862921AC7E3240022DD93 /* TabBar.js */; };
 		3128629F1AC7E3700022DD93 /* index.ios.js in Resources */ = {isa = PBXBuildFile; fileRef = 3128629E1AC7E3700022DD93 /* index.ios.js */; };
+		31587A261AD19C1F00E28514 /* Loading.js in Resources */ = {isa = PBXBuildFile; fileRef = 31587A221AD19C1F00E28514 /* Loading.js */; };
+		31587A271AD19C1F00E28514 /* NewsDetail.js in Resources */ = {isa = PBXBuildFile; fileRef = 31587A231AD19C1F00E28514 /* NewsDetail.js */; };
+		31587A281AD19C1F00E28514 /* NewsList.js in Resources */ = {isa = PBXBuildFile; fileRef = 31587A241AD19C1F00E28514 /* NewsList.js */; };
+		31587A291AD19C1F00E28514 /* TabBar.js in Resources */ = {isa = PBXBuildFile; fileRef = 31587A251AD19C1F00E28514 /* TabBar.js */; };
 		31D89A2D1ACC4DDC0046616A /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 31D89A2C1ACC4DDC0046616A /* main.jsbundle */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
@@ -110,9 +112,11 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = iOS/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = iOS/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
-		312862911AC7E3240022DD93 /* NewsList.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = NewsList.js; sourceTree = "<group>"; };
-		312862921AC7E3240022DD93 /* TabBar.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = TabBar.js; sourceTree = "<group>"; };
 		3128629E1AC7E3700022DD93 /* index.ios.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = index.ios.js; sourceTree = "<group>"; };
+		31587A221AD19C1F00E28514 /* Loading.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Loading.js; sourceTree = "<group>"; };
+		31587A231AD19C1F00E28514 /* NewsDetail.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = NewsDetail.js; sourceTree = "<group>"; };
+		31587A241AD19C1F00E28514 /* NewsList.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = NewsList.js; sourceTree = "<group>"; };
+		31587A251AD19C1F00E28514 /* TabBar.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = TabBar.js; sourceTree = "<group>"; };
 		31D89A2C1ACC4DDC0046616A /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -215,13 +219,23 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		312862901AC7E3240022DD93 /* Application */ = {
+		31587A201AD19C1F00E28514 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				312862911AC7E3240022DD93 /* NewsList.js */,
-				312862921AC7E3240022DD93 /* TabBar.js */,
+				31587A211AD19C1F00E28514 /* View */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		31587A211AD19C1F00E28514 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				31587A221AD19C1F00E28514 /* Loading.js */,
+				31587A231AD19C1F00E28514 /* NewsDetail.js */,
+				31587A241AD19C1F00E28514 /* NewsList.js */,
+				31587A251AD19C1F00E28514 /* TabBar.js */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -252,8 +266,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				31587A201AD19C1F00E28514 /* Application */,
 				31D89A2C1ACC4DDC0046616A /* main.jsbundle */,
-				312862901AC7E3240022DD93 /* Application */,
 				13B07FAE1A68108700A75B9A /* ReactNativeNews */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
@@ -425,11 +439,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				312862941AC7E3240022DD93 /* TabBar.js in Resources */,
+				31587A291AD19C1F00E28514 /* TabBar.js in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				312862931AC7E3240022DD93 /* NewsList.js in Resources */,
+				31587A261AD19C1F00E28514 /* Loading.js in Resources */,
 				31D89A2D1ACC4DDC0046616A /* main.jsbundle in Resources */,
+				31587A281AD19C1F00E28514 /* NewsList.js in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				31587A271AD19C1F00E28514 /* NewsDetail.js in Resources */,
 				3128629F1AC7E3700022DD93 /* index.ios.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

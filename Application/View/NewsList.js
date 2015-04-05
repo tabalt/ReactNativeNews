@@ -6,6 +6,9 @@
 
 var React = require('react-native');
 
+var NewsDetail = require('./NewsDetail');
+var LoadingView = require('./Loading');
+
 var {
     Image,
     ListView,
@@ -13,9 +16,10 @@ var {
     Text,
     View,
     TouchableOpacity,
+    Navigator
 } = React;
 
-var NEWS_LIST_API_URL = 'http://88.studyteam.sinaapp.com/rnn_news_list.json?';
+var NEWS_LIST_API_URL = 'http://88.studyteam.sinaapp.com/rnn/news_list.json?';
 
 var NewsList = React.createClass({
 
@@ -43,7 +47,9 @@ var NewsList = React.createClass({
     },
     render : function() {
         if (!this.state.loaded) {
-            return this.renderLoadingView();
+            return (
+                <LoadingView />
+            );
         }
         return (
             <ListView 
@@ -52,20 +58,9 @@ var NewsList = React.createClass({
                 style={styles.listView} />
         );
     },
-    renderLoadingView : function() {
-        return (
-                <View style={[styles.pageContainer, {marginTop : 50}]}>
-                <View style={styles.container}>
-                    <Text>
-                        Loading News...
-                    </Text>
-                </View>
-            </View>
-        );
-    },
     renderNews : function(news) {
         return (
-            <TouchableOpacity onPress={this.onPressNews(news.id)}>
+            <TouchableOpacity onPress={() => this.onPressNews(news)}>
                 <View style={styles.pageContainer}>
                     <View style={[styles.container, styles.newsItemContainer]}>
                         <Image 
@@ -80,9 +75,13 @@ var NewsList = React.createClass({
             </TouchableOpacity>
         );
     },
-    onPressNews : function(newsId) {
-        //TODO 启动新页面
-        console.log(newsId)
+    onPressNews : function(news) {
+        
+        this.props.navigator.push({
+            title: "News Detail",
+            component: NewsDetail,
+            passProps: {news},
+        });
     },
 });
 
@@ -96,7 +95,7 @@ var styles = StyleSheet.create({
         flexDirection : 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#ffffff',
     },
     rightContainer: {
         flex: 1,
@@ -106,7 +105,6 @@ var styles = StyleSheet.create({
         borderBottomColor: '#ebebeb',
     },
     listView: {
-        paddingTop: 10,
         backgroundColor: '#F5FCFF',
     },
     newsPic : {

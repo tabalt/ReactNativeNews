@@ -7,11 +7,14 @@
 var React = require('react-native');
 
 var NewsList = require('./NewsList');
+var LoadingView = require('./Loading');
+var SettingView = require('./Setting');
 
 var {
     StyleSheet,
     View,
     TabBarIOS,
+    NavigatorIOS,
     Text
 } = React;
 
@@ -24,14 +27,6 @@ var TabBar = React.createClass({
             selectedTab: 'blueTab',
             presses: 0,
         }
-    },
-    _renderTabContent: function(color: string, pageText: string) {
-        return (
-            <View style={[styles.tabContent, {backgroundColor: color}]}>
-                <Text style={styles.tabText}>{pageText}</Text>
-                <Text style={styles.tabText}>{this.state.presses} re-renders of this tab</Text>
-            </View>
-        );
     },
 
     render : function() {
@@ -48,7 +43,14 @@ var TabBar = React.createClass({
                             selectedTab: 'blueTab',
                         });
                     }}>
-                    <NewsList />
+
+                    <NavigatorIOS
+                        style={[styles.container,{flex : 1, marginTop : 0}]}
+                        initialRoute={{
+                            title: 'News List',
+                            component: NewsList,
+                        }} />
+
                 </TabBarItemIOS>
                 <TabBarItemIOS
                     accessibilityLabel="Red Tab"
@@ -60,7 +62,7 @@ var TabBar = React.createClass({
                             selectedTab: 'redTab',
                         });
                     }}>
-                    {this._renderTabContent('#783E33', 'Red Tab')}
+                    <LoadingView />
                 </TabBarItemIOS>
                 <TabBarItemIOS
                     name="greenTab"
@@ -70,10 +72,9 @@ var TabBar = React.createClass({
                     onPress={() => {
                         this.setState({
                             selectedTab: 'greenTab',
-                            presses: this.state.presses + 1
                         });
                     }}>
-                    {this._renderTabContent('#21551C', 'Green Tab')}
+                    <LoadingView />
                 </TabBarItemIOS>
           </TabBarIOS>
         );

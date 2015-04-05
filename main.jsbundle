@@ -934,7 +934,7 @@ Object.assign = function(target, sources) {
   setupErrorGuard();
 })(this);
 
-__d('ReactNativeNews/index.ios',["react-native/Libraries/react-native/react-native","ReactNativeNews/Application/TabBar"],function(global, require, requireDynamic, requireLazy, module, exports) {  /**
+__d('ReactNativeNews/index.ios',["react-native/Libraries/react-native/react-native","ReactNativeNews/Application/View/TabBar"],function(global, require, requireDynamic, requireLazy, module, exports) {  /**
  * React Native News App
  * https://github.com/tabalt/ReactNativeNews
  */
@@ -942,7 +942,7 @@ __d('ReactNativeNews/index.ios',["react-native/Libraries/react-native/react-nati
 
 var React = require('react-native/Libraries/react-native/react-native');
 
-var TabBar = require('ReactNativeNews/Application/TabBar');
+var TabBarView = require('ReactNativeNews/Application/View/TabBar');
 
 var $__0=
     
@@ -952,28 +952,15 @@ var $__0=
   React,AppRegistry=$__0.AppRegistry,StyleSheet=$__0.StyleSheet,Text=$__0.Text,View=$__0.View;
 
 var ReactNativeNews = React.createClass({displayName: "ReactNativeNews",
-
-    getInitialState : function() {
-        return {
-
-            
-        }
-    },
     
     render : function() {
         return (
-            React.createElement(TabBar, {style: styles.container})
+            React.createElement(TabBarView, {style: styles.container})
         );
-    },
-    
-
+    }
 });
 
 var styles = StyleSheet.create({
-    pageContainer: {
-        marginLeft : 10,
-        marginRight : 10,
-    },
     container: {
         flex: 1,
         flexDirection : 'row',
@@ -38382,7 +38369,7 @@ for (eventType in topLevelTypes) {
 
 module.exports = ReactTestUtils;
 });
-__d('ReactNativeNews/Application/TabBar',["react-native/Libraries/react-native/react-native","ReactNativeNews/Application/NewsList"],function(global, require, requireDynamic, requireLazy, module, exports) {  /**
+__d('ReactNativeNews/Application/View/TabBar',["react-native/Libraries/react-native/react-native","ReactNativeNews/Application/View/NewsList","ReactNativeNews/Application/View/Loading","ReactNativeNews/Application/View/Setting"],function(global, require, requireDynamic, requireLazy, module, exports) {  /**
  * React Native News App
  * https://github.com/tabalt/ReactNativeNews
  */
@@ -38390,14 +38377,17 @@ __d('ReactNativeNews/Application/TabBar',["react-native/Libraries/react-native/r
 
 var React = require('react-native/Libraries/react-native/react-native');
 
-var NewsList = require('ReactNativeNews/Application/NewsList');
+var NewsList = require('ReactNativeNews/Application/View/NewsList');
+var LoadingView = require('ReactNativeNews/Application/View/Loading');
+var SettingView = require('ReactNativeNews/Application/View/Setting');
 
 var $__0=
     
     
     
     
-  React,StyleSheet=$__0.StyleSheet,View=$__0.View,TabBarIOS=$__0.TabBarIOS,Text=$__0.Text;
+    
+  React,StyleSheet=$__0.StyleSheet,View=$__0.View,TabBarIOS=$__0.TabBarIOS,NavigatorIOS=$__0.NavigatorIOS,Text=$__0.Text;
 
 var TabBarItemIOS = TabBarIOS.Item;
 
@@ -38408,14 +38398,6 @@ var TabBar = React.createClass({displayName: "TabBar",
             selectedTab: 'blueTab',
             presses: 0,
         }
-    },
-    _renderTabContent: function(color        , pageText        ) {
-        return (
-            React.createElement(View, {style: [styles.tabContent, {backgroundColor: color}]}, 
-                React.createElement(Text, {style: styles.tabText}, pageText), 
-                React.createElement(Text, {style: styles.tabText}, this.state.presses, " re-renders of this tab")
-            )
-        );
     },
 
     render : function() {
@@ -38432,7 +38414,14 @@ var TabBar = React.createClass({displayName: "TabBar",
                             selectedTab: 'blueTab',
                         });
                     }.bind(this)}, 
-                    React.createElement(NewsList, null)
+
+                    React.createElement(NavigatorIOS, {
+                        style: [styles.container,{flex : 1, marginTop : 0}], 
+                        initialRoute: {
+                            title: 'News List',
+                            component: NewsList,
+                        }})
+
                 ), 
                 React.createElement(TabBarItemIOS, {
                     accessibilityLabel: "Red Tab", 
@@ -38444,7 +38433,7 @@ var TabBar = React.createClass({displayName: "TabBar",
                             selectedTab: 'redTab',
                         });
                     }.bind(this)}, 
-                    this._renderTabContent('#783E33', 'Red Tab')
+                    React.createElement(LoadingView, null)
                 ), 
                 React.createElement(TabBarItemIOS, {
                     name: "greenTab", 
@@ -38454,10 +38443,9 @@ var TabBar = React.createClass({displayName: "TabBar",
                     onPress: function()  {
                         this.setState({
                             selectedTab: 'greenTab',
-                            presses: this.state.presses + 1
                         });
                     }.bind(this)}, 
-                    this._renderTabContent('#21551C', 'Green Tab')
+                    React.createElement(LoadingView, null)
                 )
           )
         );
@@ -38484,13 +38472,16 @@ function _ix_DEPRECATED(imageUri) {
 
 module.exports = TabBar;
 });
-__d('ReactNativeNews/Application/NewsList',["react-native/Libraries/react-native/react-native"],function(global, require, requireDynamic, requireLazy, module, exports) {  /**
+__d('ReactNativeNews/Application/View/NewsList',["react-native/Libraries/react-native/react-native","ReactNativeNews/Application/View/NewsDetail","ReactNativeNews/Application/View/Loading"],function(global, require, requireDynamic, requireLazy, module, exports) {  /**
  * React Native News App
  * https://github.com/tabalt/ReactNativeNews
  */
 'use strict';
 
 var React = require('react-native/Libraries/react-native/react-native');
+
+var NewsDetail = require('ReactNativeNews/Application/View/NewsDetail');
+var LoadingView = require('ReactNativeNews/Application/View/Loading');
 
 var $__0=
     
@@ -38499,9 +38490,10 @@ var $__0=
     
     
     
-  React,Image=$__0.Image,ListView=$__0.ListView,StyleSheet=$__0.StyleSheet,Text=$__0.Text,View=$__0.View,TouchableOpacity=$__0.TouchableOpacity;
+    
+  React,Image=$__0.Image,ListView=$__0.ListView,StyleSheet=$__0.StyleSheet,Text=$__0.Text,View=$__0.View,TouchableOpacity=$__0.TouchableOpacity,Navigator=$__0.Navigator;
 
-var NEWS_LIST_API_URL = 'http://88.studyteam.sinaapp.com/rnn_news_list.json?';
+var NEWS_LIST_API_URL = 'http://88.studyteam.sinaapp.com/rnn/news_list.json?';
 
 var NewsList = React.createClass({displayName: "NewsList",
 
@@ -38529,7 +38521,9 @@ var NewsList = React.createClass({displayName: "NewsList",
     },
     render : function() {
         if (!this.state.loaded) {
-            return this.renderLoadingView();
+            return (
+                React.createElement(LoadingView, null)
+            );
         }
         return (
             React.createElement(ListView, {
@@ -38538,20 +38532,9 @@ var NewsList = React.createClass({displayName: "NewsList",
                 style: styles.listView})
         );
     },
-    renderLoadingView : function() {
-        return (
-                React.createElement(View, {style: [styles.pageContainer, {marginTop : 50}]}, 
-                React.createElement(View, {style: styles.container}, 
-                    React.createElement(Text, null, 
-                        "Loading News..."
-                    )
-                )
-            )
-        );
-    },
     renderNews : function(news) {
         return (
-            React.createElement(TouchableOpacity, {onPress: this.onPressNews(news.id)}, 
+            React.createElement(TouchableOpacity, {onPress: function()  {return this.onPressNews(news);}.bind(this)}, 
                 React.createElement(View, {style: styles.pageContainer}, 
                     React.createElement(View, {style: [styles.container, styles.newsItemContainer]}, 
                         React.createElement(Image, {
@@ -38566,9 +38549,13 @@ var NewsList = React.createClass({displayName: "NewsList",
             )
         );
     },
-    onPressNews : function(newsId) {
-        //TODO 启动新页面
-        console.log(newsId)
+    onPressNews : function(news) {
+        
+        this.props.navigator.push({
+            title: "News Detail",
+            component: NewsDetail,
+            passProps: {news:news},
+        });
     },
 });
 
@@ -38582,7 +38569,7 @@ var styles = StyleSheet.create({
         flexDirection : 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#ffffff',
     },
     rightContainer: {
         flex: 1,
@@ -38592,7 +38579,6 @@ var styles = StyleSheet.create({
         borderBottomColor: '#ebebeb',
     },
     listView: {
-        paddingTop: 10,
         backgroundColor: '#F5FCFF',
     },
     newsPic : {
@@ -38614,6 +38600,225 @@ var styles = StyleSheet.create({
 });
 
 module.exports = NewsList;
+
+});
+__d('ReactNativeNews/Application/View/NewsDetail',["react-native/Libraries/react-native/react-native","ReactNativeNews/Application/View/Loading"],function(global, require, requireDynamic, requireLazy, module, exports) {  /**
+ * React Native News App
+ * https://github.com/tabalt/ReactNativeNews
+ */
+'use strict';
+
+var React = require('react-native/Libraries/react-native/react-native');
+
+var LoadingView = require('ReactNativeNews/Application/View/Loading');
+
+var $__0=
+    
+    
+    
+    
+    
+  React,Image=$__0.Image,StyleSheet=$__0.StyleSheet,Text=$__0.Text,View=$__0.View,ScrollView=$__0.ScrollView;
+
+var NEWS_DETAIL_API_URL = 'http://88.studyteam.sinaapp.com/rnn/news_detail.php';
+
+var NewsDetail = React.createClass({displayName: "NewsDetail",
+
+    getInitialState : function() {
+        return {
+            newsData : {},
+            loaded : false,
+        }
+    },
+    componentDidMount : function() {
+        this.fetchData();
+    },
+    fetchData : function() {
+        fetch(NEWS_DETAIL_API_URL + '?id=' + this.props.news.id)
+            .then(function(response)  {return response.json();})
+            .then(function(responseData)  {
+                this.setState({
+                    newsData : responseData,
+                    loaded : true,
+                });
+            }.bind(this))
+            .done();
+    },
+    render : function() {
+        if (!this.state.loaded) {
+            return (
+                React.createElement(LoadingView, null)
+            );
+        }
+        var news = this.props.news;
+        var newsContent = this.state.newsData.data;
+        return (
+
+            React.createElement(ScrollView, {style: styles.pageContainer}, 
+                React.createElement(View, {style: styles.container}, 
+                    React.createElement(Text, {style: styles.newsTitle}, news.title)
+                ), 
+
+                React.createElement(View, {style: styles.container}, 
+                    React.createElement(Image, {source: {uri : news.pic}, style: styles.newsPic})
+                ), 
+
+                React.createElement(View, {style: styles.container}, 
+                    React.createElement(Text, {style: styles.newsContent}, newsContent)
+                )
+            )
+        );
+    }
+});
+
+var styles = StyleSheet.create({
+    pageContainer: {
+        
+    },
+    container: {
+        flex: 1,
+        flexDirection : 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#ffffff',
+    },
+    newsTitle : {
+        color : '#4f4f4f',
+        fontSize : 18,
+        textAlign : 'left',
+        marginTop : 10,
+        marginBottom : 10,
+        fontWeight : 'bold'
+    },
+    newsPic : {
+        width : 180,
+        height : 120,
+        margin: 10,
+    },
+    newsContent : {
+        margin : 10,
+        marginTop : 10,
+        flex: 1,
+        color : '#4f4f4f',
+        fontSize : 16,
+        textAlign : 'left',
+        writingDirection : 'ltr',
+        lineHeight : 20
+    },
+});
+
+module.exports = NewsDetail;
+
+});
+__d('ReactNativeNews/Application/View/Loading',["react-native/Libraries/react-native/react-native"],function(global, require, requireDynamic, requireLazy, module, exports) {  /**
+ * React Native News App
+ * https://github.com/tabalt/ReactNativeNews
+ */
+'use strict';
+
+var React = require('react-native/Libraries/react-native/react-native');
+
+var $__0=
+    
+    
+    
+  React,StyleSheet=$__0.StyleSheet,Text=$__0.Text,View=$__0.View;
+
+var Loading = React.createClass({displayName: "Loading",
+
+    render : function() {
+        return (
+            React.createElement(View, {style: styles.container}, 
+                React.createElement(Text, null, 
+                    "Loading..."
+                )
+            )
+        );
+    }
+});
+
+var styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        color : '#bababa',
+        backgroundColor : '#ffffff',
+        fontSize : 12,
+    }
+});
+
+module.exports = Loading;
+
+});
+__d('ReactNativeNews/Application/View/Setting',["react-native/Libraries/react-native/react-native"],function(global, require, requireDynamic, requireLazy, module, exports) {  /**
+ * React Native News App
+ * https://github.com/tabalt/ReactNativeNews
+ */
+'use strict';
+
+var React = require('react-native/Libraries/react-native/react-native');
+
+var $__0=
+    
+    
+    
+    
+  React,StyleSheet=$__0.StyleSheet,Text=$__0.Text,View=$__0.View,SwitchIOS=$__0.SwitchIOS;
+
+var Setting = React.createClass({displayName: "Setting",
+    getInitialState:function() {
+        return {
+            trueSwitchIsOn: true,
+            falseSwitchIsOn: false,
+        };
+    },
+    render : function() {
+        return (
+            React.createElement(View, {style: styles.container}, 
+                React.createElement(View, {style: styles.configItem}, 
+                    React.createElement(Text, null, "非WIFI下载图片"), 
+                    React.createElement(SwitchIOS, {
+                        onValueChange: function(value)  {return this.setState({falseSwitchIsOn: value});}.bind(this), 
+                        style: {marginLeft: 10}, 
+                        value: this.state.falseSwitchIsOn})
+                ), 
+                React.createElement(View, {style: styles.configItem}, 
+                    React.createElement(Text, null, "WIFI下自动缓存新闻"), 
+                    React.createElement(SwitchIOS, {
+                        onValueChange: function(value)  {return this.setState({trueSwitchIsOn: value});}.bind(this), 
+                        style: {marginLeft: 10}, 
+                        value: this.state.trueSwitchIsOn})
+                ), 
+                React.createElement(View, {style: styles.configItem}, 
+                    React.createElement(Text, null, "新闻推送"), 
+                    React.createElement(SwitchIOS, {
+                        onValueChange: function(value)  {return this.setState({trueSwitchIsOn: value});}.bind(this), 
+                        style: {marginLeft: 10}, 
+                        value: this.state.trueSwitchIsOn})
+                )
+            )
+        );
+    }
+});
+
+var styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        marginTop : 20,
+        //justifyContent: 'top',
+        alignItems: 'center',
+        color : '#bababa',
+        backgroundColor : '#ffffff',
+        fontSize : 12,
+    },
+    configItem : {
+        flex: 1,
+        flexDirection : 'row',
+    }
+});
+
+module.exports = Setting;
 
 });
 ;require("ReactNativeNews/index.ios");
