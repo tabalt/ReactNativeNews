@@ -12,8 +12,8 @@ a news app code by react native
 
 ### demo
 
-![storm架构总览](demo/images/1.png)
+![demo 1](demo/images/1.png)
 
-![storm架构总览](demo/images/2.png)
+![demo 2](demo/images/2.png)
 
 
