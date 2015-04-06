@@ -26,6 +26,7 @@
 		31587A281AD19C1F00E28514 /* NewsList.js in Resources */ = {isa = PBXBuildFile; fileRef = 31587A241AD19C1F00E28514 /* NewsList.js */; };
 		31587A291AD19C1F00E28514 /* TabBar.js in Resources */ = {isa = PBXBuildFile; fileRef = 31587A251AD19C1F00E28514 /* TabBar.js */; };
 		31D89A2D1ACC4DDC0046616A /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 31D89A2C1ACC4DDC0046616A /* main.jsbundle */; };
+		31F2B8461AD279DC0031204E /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 31F2B8451AD279DC0031204E /* icon.png */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
 
@@ -118,6 +119,7 @@
 		31587A241AD19C1F00E28514 /* NewsList.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = NewsList.js; sourceTree = "<group>"; };
 		31587A251AD19C1F00E28514 /* TabBar.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = TabBar.js; sourceTree = "<group>"; };
 		31D89A2C1ACC4DDC0046616A /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
+		31F2B8451AD279DC0031204E /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -203,6 +205,7 @@
 			children = (
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				31F2B8451AD279DC0031204E /* icon.png */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
@@ -441,6 +444,7 @@
 			files = (
 				31587A291AD19C1F00E28514 /* TabBar.js in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				31F2B8461AD279DC0031204E /* icon.png in Resources */,
 				31587A261AD19C1F00E28514 /* Loading.js in Resources */,
 				31D89A2D1ACC4DDC0046616A /* main.jsbundle in Resources */,
 				31587A281AD19C1F00E28514 /* NewsList.js in Resources */,
