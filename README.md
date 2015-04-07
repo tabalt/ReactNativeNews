@@ -2,6 +2,13 @@
 a news app code by react native
 
 
+### install react native
+
+check the follow link to make sure you have already installed react native :
+
+[http://facebook.github.io/react-native/docs/getting-started.html](http://facebook.github.io/react-native/docs/getting-started.html)
+
+
 ### install
 
     cd ~/reace-native/
